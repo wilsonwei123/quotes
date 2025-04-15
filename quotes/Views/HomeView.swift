@@ -1,0 +1,71 @@
+//
+//  ContentView.swift
+//  quotes
+//
+//  Created by Wilson Wei on 11/04/2025.
+//
+
+import SwiftUI
+
+struct HomeView: View {
+    @StateObject public var quotesVM = QuotesViewModel()
+    @StateObject public var colorsVM = ColorsViewModel()
+    
+    var body: some View {
+        NavigationView {
+            ZStack() {
+                colorsVM.colors.mainColor.ignoresSafeArea()
+                VStack {
+                    HStack {
+                        Spacer()
+                        Text("Favourites")
+                            .font(.title)
+                            .bold()
+                        Spacer()
+                        NavigationLink(destination: SettingsView(colorsVM: colorsVM), label: {
+                            Image(systemName: "gear")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: 50)
+                        })
+                    }
+                    ScrollView {
+                        ForEach(quotesVM.favouriteQuotes, id: \.self) { favQuote in
+                            HStack {
+                                Text("\(favQuote)\n")
+                                    .font(.headline)
+                                Spacer()
+                                Button(action: {
+                                    quotesVM.toggleFavourite(quote: favQuote)
+                                }, label: {
+                                    Image(systemName: "heart.fill")
+                                        .padding(.leading, 22.5)
+                                })
+                            }
+                            .frame(maxWidth: 350)
+                        }
+                    }
+                    .frame(maxHeight: 400)
+                    Spacer()
+                    HStack {
+                        NavigationLink(destination: DiscoverView(quotesVM: quotesVM, colorsVM: colorsVM), label: {
+                            BlueButtonView(text: "Discover")
+                                .font(.title2)
+                        })
+                        NavigationLink(destination: DailyQuoteView(quotesVM: quotesVM, colorsVM: colorsVM), label: {
+                            BlueButtonView(text: "Quote of the day")
+                                .font(.title2)
+                        })
+                    }
+                }
+                .padding()
+                .foregroundStyle(colorsVM.colors.textColor)
+                .navigationBarTitle(Text("Home"))
+            }
+        }
+    }
+}
+
+#Preview {
+    HomeView()
+}
