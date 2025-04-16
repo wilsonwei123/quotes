@@ -12,7 +12,7 @@ struct SettingsView: View {
     @State var darkModeOn = UserDefaults.standard.bool(forKey: "darkModeOn") ?? false
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 colorsVM.colors.mainColor.ignoresSafeArea()
                 VStack {

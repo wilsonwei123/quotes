@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct UserQuotesModel {
+    var userQuotes: [String] = UserDefaults.standard.stringArray(forKey: "userQuotes") ?? []
+}
