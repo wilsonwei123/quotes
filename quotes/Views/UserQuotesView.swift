@@ -37,7 +37,9 @@ struct UserQuotesView: View {
                         }
                     }
                     Button(action: {
-                        showCreateQuoteSheet = true
+                        withAnimation {
+                            showCreateQuoteSheet = true
+                        }
                     }, label: {
                         BlueButtonView(text: "Add quote")
                     })
@@ -76,7 +78,9 @@ struct UserQuotesView: View {
                             }
                         HStack {
                             Button(action: {
-                                showCreateQuoteSheet = false
+                                withAnimation {
+                                    showCreateQuoteSheet = false
+                                }
                             }, label: {
                                 Text("Cancel")
                                     .foregroundStyle(.blue)
@@ -88,7 +92,9 @@ struct UserQuotesView: View {
                                 userQuotesVM.addUserQuote(newQuote: "\(addQuoteContent) – \(authorName)")
                                 addQuoteContent = ""
                                 UserDefaults.standard.set(authorName, forKey: "authorName")
-                                showCreateQuoteSheet = false
+                                withAnimation {
+                                    showCreateQuoteSheet = false
+                                }
                             }, label: {
                                 BlueButtonView(text: "Save")
                             })
@@ -98,6 +104,8 @@ struct UserQuotesView: View {
                     .frame(width: 200, height: 500)
                 }
             }
+            .transition(.opacity)
+            .animation(.easeIn(duration: 0.3), value: showCreateQuoteSheet)
             .foregroundStyle(colorsVM.colors.textColor)
             .navigationTitle("My Quotes")
         }
