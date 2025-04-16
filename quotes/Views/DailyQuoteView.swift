@@ -11,7 +11,7 @@ struct DailyQuoteView: View {
     @ObservedObject var quotesVM: QuotesViewModel
     @ObservedObject var colorsVM: ColorsViewModel
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 colorsVM.colors.mainColor.ignoresSafeArea()
                 VStack {

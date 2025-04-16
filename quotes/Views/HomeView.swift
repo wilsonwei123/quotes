@@ -12,7 +12,7 @@ struct HomeView: View {
     @StateObject public var colorsVM = ColorsViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack() {
                 colorsVM.colors.mainColor.ignoresSafeArea()
                 VStack {
@@ -50,11 +50,15 @@ struct HomeView: View {
                     HStack {
                         NavigationLink(destination: DiscoverView(quotesVM: quotesVM, colorsVM: colorsVM), label: {
                             BlueButtonView(text: "Discover")
-                                .font(.title2)
+                                .font(.title3)
                         })
                         NavigationLink(destination: DailyQuoteView(quotesVM: quotesVM, colorsVM: colorsVM), label: {
                             BlueButtonView(text: "Quote of the day")
-                                .font(.title2)
+                                .font(.title3)
+                        })
+                        NavigationLink(destination: UserQuotesView(colorsVM: colorsVM), label: {
+                            BlueButtonView(text: "My quotes")
+                                .font(.title3)
                         })
                     }
                 }

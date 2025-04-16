@@ -20,7 +20,7 @@ struct DiscoverView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 colorsVM.colors.mainColor.ignoresSafeArea()
                 VStack {
