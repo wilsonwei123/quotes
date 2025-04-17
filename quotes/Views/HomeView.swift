@@ -17,17 +17,9 @@ struct HomeView: View {
                 colorsVM.colors.mainColor.ignoresSafeArea()
                 VStack {
                     HStack {
-                        Spacer()
                         Text("Favourites")
                             .font(.title)
                             .bold()
-                        Spacer()
-                        NavigationLink(destination: SettingsView(colorsVM: colorsVM), label: {
-                            Image(systemName: "gear")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: 50)
-                        })
                     }
                     ScrollView {
                         ForEach(quotesVM.favouriteQuotes, id: \.self) { favQuote in
@@ -65,6 +57,15 @@ struct HomeView: View {
                 .padding()
                 .foregroundStyle(colorsVM.colors.textColor)
                 .navigationBarTitle(Text("Home"))
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(destination: SettingsView(colorsVM: colorsVM), label: {
+                            Image(systemName: "gear")
+                                .imageScale(.large)
+                                .font(.title2)
+                        })
+                    }
+                }
             }
         }
     }
