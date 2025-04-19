@@ -125,6 +125,9 @@ struct QuotesModel {
         "Perseverance is not a long race; it is many short races one after another. – Walter Elliot",
         "Push yourself, because no one else is going to do it for you. – Unknown",
         "Stars can't shine without darkness. – D.H. Sidebottom",
-        "The comeback is always stronger than the setback. – Unknown"
+        "The comeback is always stronger than the setback. – Unknown",
+        "Remember someone made every problem so every problem is possible. - Julian Xiao",
+        "Regret will only follow the people that make bad choices. - Anderson Wang",
+        "True knowledge means to know how to apply knowledge to the real world - Anderson Wang"
     ]
 }
