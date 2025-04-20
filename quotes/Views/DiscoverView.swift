@@ -20,44 +20,43 @@ struct DiscoverView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                colorsVM.colors.mainColor.ignoresSafeArea()
-                VStack {
-                    ScrollView {
-                        ForEach(quotesList, id: \.self) {quote in
-                            HStack {
-                                Text(quote)
-                                .font(.system(size: 15))
-                                .frame(maxWidth: 300, alignment: .leading)
-                                .multilineTextAlignment(.leading)
-                                .padding(10)
-                                Button(action: {
-                                    quotesVM.toggleFavourite(quote: quote)
-                                }, label: {
-                                    if quotesVM.isFavourite(quote: quote) {
-                                        Image(systemName: "heart.fill")
-                                            .padding()
-                                    } else {
-                                        Image(systemName: "heart")
-                                            .padding()
-                                    }
-                                })
-                            }
+        ZStack {
+            colorsVM.colors.mainColor.ignoresSafeArea()
+            VStack {
+                ScrollView {
+                    ForEach(quotesList, id: \.self) {quote in
+                        HStack {
+                            Text(quote)
+                            .font(.system(size: 15))
+                            .frame(maxWidth: 300, alignment: .leading)
+                            .multilineTextAlignment(.leading)
+                            .padding(10)
+                            Button(action: {
+                                quotesVM.toggleFavourite(quote: quote)
+                            }, label: {
+                                if quotesVM.isFavourite(quote: quote) {
+                                    Image(systemName: "heart.fill")
+                                        .padding()
+                                } else {
+                                    Image(systemName: "heart")
+                                        .padding()
+                                }
+                            })
                         }
                     }
-                    .frame(maxWidth: 350)
-                    Spacer()
-                    Button(action: {
-                        quotesList.shuffle()
-                    }, label: {
-                        BlueButtonView(text: "Shuffle order")
-                            .font(.callout)
-                    })
                 }
-                .foregroundColor(colorsVM.colors.textColor)
+                .frame(maxWidth: 350)
+                Spacer()
+                Button(action: {
+                    quotesList.shuffle()
+                }, label: {
+                    BlueButtonView(text: "Shuffle order")
+                        .font(.callout)
+                        .padding()
+                })
             }
-            .navigationTitle(Text("Discover"))
+            .foregroundColor(colorsVM.colors.textColor)
         }
+        .navigationTitle(Text("Discover"))
     }
 }

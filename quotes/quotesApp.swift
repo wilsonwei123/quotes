@@ -11,7 +11,7 @@ import SwiftUI
 struct quotesApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            MainAppView()
         }
     }
 }
