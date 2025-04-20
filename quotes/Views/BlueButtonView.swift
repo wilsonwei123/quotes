@@ -10,13 +10,14 @@ import SwiftUI
 struct BlueButtonView: View {
     let text: String
     var body: some View {
-        Text(text)
-            .bold()
-            .padding()
-            .background(Color.cyan)
-            .cornerRadius(10)
-            .frame(maxWidth: .infinity)
-            .multilineTextAlignment(.center)
+        HStack {
+            Text(text)
+                .bold()
+                .padding()
+                .background(Color.cyan)
+                .cornerRadius(10)
+                .multilineTextAlignment(.center)
+        }
     }
 }
 

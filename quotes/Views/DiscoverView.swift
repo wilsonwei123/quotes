@@ -52,7 +52,7 @@ struct DiscoverView: View {
                 }, label: {
                     BlueButtonView(text: "Shuffle order")
                         .font(.callout)
-                        .padding()
+                        .padding(20)
                 })
             }
             .foregroundColor(colorsVM.colors.textColor)

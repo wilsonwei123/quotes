@@ -10,10 +10,25 @@ import SwiftUI
 struct MainAppView: View {
     @StateObject var quotesVM = QuotesViewModel()
     @StateObject var colorsVM = ColorsViewModel()
+    init() {
+            UITabBar.appearance().tintColor = UIColor.systemBlue
+
+            UITabBar.appearance().unselectedItemTintColor = UIColor.gray.withAlphaComponent(0.8)
+        }
     var body: some View {
         TabView {
             NavigationStack {
                 HomeView(quotesVM: quotesVM, colorsVM: colorsVM)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            NavigationLink(destination: SettingsView(colorsVM: colorsVM), label: {
+                                Image(systemName: "gear")
+                                    .imageScale(.large)
+                                    .font(.title2)
+                            })
+                        }
+                    }
+
             }
             .tabItem {
                 Label("Home", systemImage: "house")
@@ -35,15 +50,6 @@ struct MainAppView: View {
             }
             .tabItem {
                 Label("My quotes", systemImage: "quote.bubble")
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(destination: SettingsView(colorsVM: colorsVM), label: {
-                    Image(systemName: "gear")
-                        .imageScale(.large)
-                        .font(.title2)
-                })
             }
         }
     }

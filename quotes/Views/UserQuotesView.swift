@@ -41,7 +41,7 @@ struct UserQuotesView: View {
                     }
                 }, label: {
                     BlueButtonView(text: "Add quote")
-                        .padding()
+                        .padding(20)
                 })
             }
             .blur(radius: showCreateQuoteSheet ? 10 : 0)
