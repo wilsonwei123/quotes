@@ -34,6 +34,12 @@ struct MainAppView: View {
                 Label("Home", systemImage: "house")
             }
             NavigationStack {
+                FavouritesView(quotesVM: quotesVM, colorsVM: colorsVM)
+            }
+            .tabItem {
+                Label("Favourites", systemImage: "heart.fill")
+            }
+            NavigationStack {
                 DiscoverView(quotesVM: quotesVM, colorsVM: colorsVM)
             }
             .tabItem {

@@ -10,33 +10,34 @@ import SwiftUI
 struct HomeView: View {
     @ObservedObject public var quotesVM: QuotesViewModel
     @ObservedObject public var colorsVM: ColorsViewModel
-    
+    var featuredM = FeaturedQuotesModel()
     var body: some View {
         ZStack() {
             colorsVM.colors.mainColor.ignoresSafeArea()
             VStack {
-                HStack {
-                    Text("Favourites")
-                        .font(.title)
-                        .bold()
-                }
+                Text("Featured Quotes\n")
+                    .bold()
+                    .font(.title)
                 ScrollView {
-                    ForEach(quotesVM.favouriteQuotes, id: \.self) { favQuote in
+                    ForEach(featuredM.featuredQuotes, id: \.self) { quote in
                         HStack {
-                            Text("\(favQuote)\n")
+                            Text("\(quote)\n")
                                 .font(.headline)
                             Spacer()
                             Button(action: {
-                                quotesVM.toggleFavourite(quote: favQuote)
+                                quotesVM.toggleFavourite(quote: quote)
                             }, label: {
-                                Image(systemName: "heart.fill")
-                                    .padding(.leading, 22.5)
+                                if quotesVM.isFavourite(quote: quote) {
+                                    Image(systemName: "heart.fill")
+                                        .padding()
+                                } else {
+                                    Image(systemName: "heart")
+                                        .padding()
+                                }
                             })
                         }
-                        .frame(maxWidth: 350)
                     }
                 }
-                .frame(maxHeight: 400)
             }
             .padding()
             .foregroundStyle(colorsVM.colors.textColor)
