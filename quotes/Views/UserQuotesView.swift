@@ -89,7 +89,7 @@ struct UserQuotesView: View {
                         })
                         Spacer()
                         Button(action: {
-                            userQuotesVM.addUserQuote(newQuote: "\(addQuoteContent) – \(authorName)")
+                            userQuotesVM.addUserQuote(newQuote: "\(addQuoteContent) - \(authorName)")
                                 addQuoteContent = ""
                             UserDefaults.standard.set(authorName, forKey: "authorName")
                             withAnimation {
